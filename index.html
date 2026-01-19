@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Коммуналка и копилка</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand__title">Коммуналка и копилка</div>
+      <div class="brand__subtitle">База: <span id="baseRent">5000</span> ₴ / месяц</div>
+    </div>
+
+    <div class="controls" role="group" aria-label="Управление отображением">
+      <button id="toggleViewBtn" class="btn btn--primary" type="button" aria-pressed="false">
+        Режим: Таблица
+      </button>
+
+      <button id="toggleSortBtn" class="btn" type="button" aria-pressed="true" title="Меняет порядок отображения">
+        Сортировка: новые сверху
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">Итог за последний месяц</h1>
+        <div class="panel__meta" id="latestMonthLabel">—</div>
+      </div>
+
+      <div class="summary-grid" aria-label="Сводка">
+        <div class="stat">
+          <div class="stat__label">Коммуналка кв.1</div>
+          <div class="stat__value" id="latestApt1">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Коммуналка кв.2</div>
+          <div class="stat__value" id="latestApt2">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Итого коммуналка</div>
+          <div class="stat__value" id="latestTotal">—</div>
+        </div>
+        <div class="stat stat--accent">
+          <div class="stat__label">Остаток из 5000</div>
+          <div class="stat__value" id="latestRemainder">—</div>
+        </div>
+        <div class="stat stat--big">
+          <div class="stat__label">Копилка (накоплено)</div>
+          <div class="stat__value" id="latestPiggy">—</div>
+        </div>
+      </div>
+
+      <div class="note" id="latestNoteWrap" hidden>
+        <div class="note__label">Примечание</div>
+        <div class="note__text" id="latestNote">—</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__head">
+        <h2 class="panel__title">Все месяцы</h2>
+        <div class="panel__meta" id="countLabel">—</div>
+      </div>
+
+      <div id="errorBox" class="error" hidden></div>
+
+      <div id="tableView" class="view view--table" aria-label="Табличный вид">
+        <div class="table-wrap" role="region" aria-label="Таблица" tabindex="0">
+          <table class="ledger">
+            <thead>
+              <tr>
+                <th>Месяц</th>
+                <th class="num">Кв.1</th>
+                <th class="num">Кв.2</th>
+                <th class="num">Итого</th>
+                <th class="num">Остаток</th>
+                <th class="num">Копилка</th>
+              </tr>
+            </thead>
+            <tbody id="ledgerBody">
+              <tr><td colspan="6">Загрузка…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="cardView" class="view view--cards" aria-label="Карточный вид" hidden>
+        <div id="cardsContainer" class="cards"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__line">
+        Если нужно, можно распечатать или переслать ссылку. Данные обновляются, когда Женя меняет <code>data.json</code>.
+      </div>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
